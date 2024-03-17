@@ -1,8 +1,6 @@
 import json
-import click
 
 
-@click.command()
 def movlst():
     """List all movies from the JSON file."""
     movies = load_movies_from_database()
@@ -12,6 +10,7 @@ def movlst():
         print("Year:", movie["year"])
         print("Director:", movie["director"])
         print("Genre:", movie["genre"])
+        print("Rating", movie["rating"])
         print()
 
 
