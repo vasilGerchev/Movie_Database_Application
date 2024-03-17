@@ -26,7 +26,7 @@ def print_movie_details(movie):
     print("Year:", movie["year"])
     print("Director:", movie["director"])
     print("Genre:", movie["genre"])
-    print("User Ratings:", movie.get("user_ratings", "N/A"))
+    print("User Ratings:", movie["rating"])
     print()
 
 
