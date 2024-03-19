@@ -14,7 +14,7 @@ def get_movie_details(movie_id):
 
 def load_movies_from_database():
     """Load movies from the JSON database."""
-    with open("movies.json", "r") as f:
+    with open("movies_database.json", "r") as f:
         movies = json.load(f)
     return movies
 
@@ -27,7 +27,6 @@ def print_movie_details(movie):
     print("Director:", movie["director"])
     print("Genre:", movie["genre"])
     print("User Ratings:", movie["rating"])
-    print()
 
 
 if __name__ == "__main__":
