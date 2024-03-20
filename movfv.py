@@ -3,7 +3,18 @@ import sys
 import movdt
 
 
+def create_favorite_database():
+    # Define the path to the JSON file
+    db_path = Path("favorite_database.json")
+
+    # Initialize an empty database if the file doesn't exist
+    if not db_path.exists():
+        with open(db_path, "w") as f:
+            json.dump([], f)
+
+
 def search_movie_by_id(movie_id):
+    """Search for movie ID in database"""
     movies = movdt.load_movies_from_database()
     found_movies = []
     for movie in movies:
@@ -18,9 +29,36 @@ def search_movie_by_id(movie_id):
         return None
 
 
-def save_movie_to_favorite_movie(movies):
-    with open("favorite_movies.json", 'a') as file:
-        json.dump(movies, file, indent=4)
+def load_movie_from_favorite_movie():
+    """Load movies from the JSON database."""
+    try:
+        with open("favorite_movies.json", "r") as f:
+            movies = json.load(f)
+    except FileNotFoundError:
+        movies = []
+    return movies
+
+
+def check_for_exist_in_favorite(movie_id, favorities):
+    """Check for already existing movie in favorite"""
+    for movie in favorities:
+        if movie.get('id') == movie_id:
+            return True
+    return False
+
+
+def save_movie_to_favorite_movie(new_movies):
+    """Save movies to the JSON database."""
+    existing_movies = load_movie_from_favorite_movie()  # Load existing favorite movies
+    if existing_movies is None:  # If file not found or empty, initialize as empty list
+        existing_movies = []
+    for movie in new_movies:
+        if check_for_exist_in_favorite(movie['id'], existing_movies):
+            print(f"This movie with ID: {movie['id']} is already exist in favorite")
+            return
+    existing_movies.append(movie)  # Append new movies to existing list
+    with open("favorite_movies.json", "w") as f:
+        json.dump(existing_movies, f, indent=4)
 
 
 if __name__ == "__main__":
