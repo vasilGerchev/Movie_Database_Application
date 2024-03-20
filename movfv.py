@@ -11,7 +11,7 @@ def search_movie_by_id(movie_id):
             found_movies.append(movie)
     if found_movies:
         for found_movie in found_movies:
-            print("The movie:", movie["title"], "Was added to favorites")
+            print("The movie:", found_movie["title"], "Was added to favorites")
         return found_movies
     else:
         print("The movie does not exist")
@@ -19,7 +19,7 @@ def search_movie_by_id(movie_id):
 
 
 def save_movie_to_favorite_movie(movies):
-    with open("favorite_movies.json", 'w') as file:
+    with open("favorite_movies.json", 'a') as file:
         json.dump(movies, file, indent=4)
 
 
