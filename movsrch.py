@@ -1,6 +1,7 @@
 import json
 import sys
 import movdt
+import user
 
 
 def search_movies(query):

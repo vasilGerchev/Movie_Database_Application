@@ -1,5 +1,6 @@
 import json
 import sys
+import user
 
 
 def get_movie_details(movie_id):
