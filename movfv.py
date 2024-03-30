@@ -1,7 +1,7 @@
 import json
 import sys
 import movdt
-import user
+import authentication
 
 
 def create_favorite_database():

@@ -1,6 +1,5 @@
 import json
-import user
-
+from authentication import UserManager
 
 def movlst():
     """List all movies from the JSON file."""

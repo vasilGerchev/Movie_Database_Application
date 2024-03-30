@@ -1,6 +1,6 @@
 import json
 import sys
-import user
+import authentication
 import requests
 
 OMDB_API_KEY = "75e112ac"

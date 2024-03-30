@@ -1,6 +1,6 @@
 import json
 import sys
-import user
+import authentication
 
 
 def get_movie_details(movie_id):
