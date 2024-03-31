@@ -1,38 +1,58 @@
 [
     {
+        "id": 12,
+        "title": "The Matrix Revolutions",
+        "user": 3
+    },
+    {
+        "id": 12,
+        "title": "The Matrix Revolutions",
+        "user": 4
+    },
+    {
+        "id": 12,
+        "title": "The Matrix Revolutions",
+        "user": 5
+    },
+    {
+        "id": 11,
+        "title": "The Matrix Reloaded",
+        "user": 5
+    },
+    {
         "id": 1,
         "title": "The Shawshank Redemption",
-        "year": 1994,
-        "director": "Frank Darabont",
-        "genre": "Drama",
-        "description": "Over the course of several years, two convicts form a friendship, seeking consolation and, eventually, redemption through basic compassion.",
-        "rating": "9.3"
+        "user": 5
     },
     {
-        "id": 3,
-        "title": "The Dark Knight",
-        "year": 2008,
-        "director": "Christopher Nolan",
-        "genre": "Action",
-        "description": "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
-        "rating": "9"
+        "id": 1,
+        "title": "The Shawshank Redemption",
+        "user": 3
     },
     {
-        "id": 5,
-        "title": "Interstellar",
-        "year": 2014,
-        "director": "Christopher Nolan",
-        "genre": "Drama",
-        "description": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
-        "rating": "8.7"
+        "id": 15,
+        "title": "The Gentlemen",
+        "user id": 3
     },
     {
-        "id": 7,
-        "title": "Forrest Gump",
-        "year": 1994,
-        "director": "Robert Zemeckis",
-        "genre": "Drama",
-        "description": "The history of the United States from the 1950s to the '70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.",
-        "rating": "8.8"
+        "id": 14,
+        "title": "Oppenheimer",
+        "user id": 1
+    },
+    {
+        "id": 15,
+        "title": "The Gentlemen",
+        "user id": 7
+    },
+    {
+        "id": 15,
+        "title": "The Gentlemen",
+        "user id": 9
+    },
+
+    {
+        "id": 15,
+        "title": "The Gentlemen",
+        "user id": 10
     }
 ]

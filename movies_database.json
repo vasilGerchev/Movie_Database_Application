@@ -119,7 +119,7 @@
     {
         "id": 14,
         "title": "Oppenheimer",
-        "year": "2023",
+        "year": 2023,
         "director": "Christopher Nolan",
         "genre": "Drama",
         "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
@@ -128,28 +128,37 @@
     {
         "id": 15,
         "title": "The Gentlemen",
-        "year": "24 Jan 2020",
+        "year": 2020,
         "director": "Guy Ritchie",
-        "genre": "Action, Crime",
+        "genre": "Action",
         "description": "An American expat tries to sell off his highly profitable marijuana empire in London, triggering plots, schemes, bribery and blackmail in an attempt to steal his domain out from under him.",
         "rating": "7.8"
     },
     {
         "id": 16,
         "title": "The Lord of the Rings: The Fellowship of the Ring",
-        "year": "19 Dec 2001",
+        "year": 2001,
         "director": "Peter Jackson",
-        "genre": "Action, Adventure, Drama",
+        "genre": "Adventure",
         "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.",
         "rating": "8.9"
     },
     {
         "id": 17,
         "title": "The Lord of the Rings: The Two Towers",
-        "year": "2002",
+        "year": 2002,
         "director": "Peter Jackson",
         "genre": "Adventure",
         "description": "While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron's new ally, Saruman, and his hordes of Isengard.",
         "rating": "8.8"
+    },
+    {
+        "id": 18,
+        "title": "Transformers",
+        "year": 2007,
+        "director": "Michael Bay",
+        "genre": "Action",
+        "description": "An ancient struggle between two Cybertronian races, the heroic Autobots and the evil Decepticons, comes to Earth, with a clue to the ultimate power held by a teenager.",
+        "rating": "7.0"
     }
 ]

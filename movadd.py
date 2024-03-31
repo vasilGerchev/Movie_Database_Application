@@ -1,7 +1,7 @@
 import json
 import sys
-import authentication
 import requests
+import login
 
 OMDB_API_KEY = "75e112ac"
 
@@ -13,7 +13,7 @@ def add_movie(title, desc, date, director, genre):
     new_movie = {
         "id": movie_id,
         "title": title,
-        "year": date,
+        "year": int(date),
         "director": director,
         "genre": genre,
         "description": desc,

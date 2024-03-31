@@ -1,7 +1,9 @@
 import json
 import sys
 import movdt
-import authentication
+import login
+
+print(login.user)
 
 
 def create_favorite_database():
@@ -40,10 +42,10 @@ def load_movie_from_favorite_movie():
     return movies
 
 
-def check_for_exist_in_favorite(movie_id, favorities):
-    """Check for already existing movie in favorite"""
+def check_for_exist_in_favorite(movie_title, user_id, favorities):
+    """Check if a movie with the same title exists for a different user ID."""
     for movie in favorities:
-        if movie.get('id') == movie_id:
+        if movie.get('title') == movie_title and movie.get('user id') == user_id:
             return True
     return False
 
@@ -54,10 +56,12 @@ def save_movie_to_favorite_movie(new_movies):
     if existing_movies is None:  # If file not found or empty, initialize as empty list
         existing_movies = []
     for movie in new_movies:
-        if check_for_exist_in_favorite(movie['id'], existing_movies):
-            print(f"This movie with ID: {movie['id']} is already exist in favorite")
+        if check_for_exist_in_favorite(movie['title'], login.user, existing_movies):
+            print(f"The movie with ID: {movie['id']} is already exist in favorite")
             return
-    existing_movies.append(movie)  # Append new movies to existing list
+    simplified_movie = {'id': movie['id'], 'title': movie['title'], 'user id': login.user}
+    existing_movies.append(simplified_movie)  # Append new movies to existing list
+
     with open("favorite_movies.json", "w") as f:
         json.dump(existing_movies, f, indent=4)
 
