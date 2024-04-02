@@ -1,6 +1,5 @@
 import json
 from collections import Counter
-import login
 
 # Load the JSON file from movie database
 with open('movies_database.json') as f:
@@ -27,6 +26,7 @@ def sort_movies_by_newest(favorite_movie_database):
     return sorted(movie_data, key=lambda x: x['year'], reverse=True)
 
 
+# Define a function to sort movies by liked
 def top_5_liked_movies(favorite_movie_database):
     # Count occurrences of each movie id
     id_counts = Counter(movie['id'] for movie in favorite_movie_database)
@@ -61,7 +61,6 @@ for movie in sorted_movies_by_newest[:5]:
 # Call the function to sort movies by liked
 top_5_liked_movies(favorite_movie_database)
 
-
 # Print the sorted movies by most liked
 print("\nSorted by Most Liked:")
 sorted_top_5_movies = sorted(top_5_liked_movies(favorite_movie_database), key=lambda x: x['count'], reverse=True)
@@ -69,5 +68,3 @@ for movie in sorted_top_5_movies[:5]:  # Print only the top 5 most liked movies
     movie_details = next((item for item in movie_data if item["id"] == movie["id"]), None)
     if movie_details:
         print(f"\t{movie_details['title']} (Likes: {movie['count']})")
-
-

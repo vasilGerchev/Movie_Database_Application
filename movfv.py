@@ -1,7 +1,7 @@
 import json
 import sys
 import movdt
-import login
+from user_login import login
 
 print(login.user)
 

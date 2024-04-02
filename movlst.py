@@ -1,5 +1,5 @@
 import json
-import login
+
 
 def movlst():
     """List all movies from the JSON file."""
