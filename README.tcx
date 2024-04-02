@@ -1,4 +1,9 @@
-DESCRIPTION:
-Welcome to my project. This is a Movie Database Application made in Python.
-https://www.youtube.com/watch?v=3NEzo3CfbPg
+Python Movie Database Application
+This Python Movie Database Application is a command-line tool designed to manage a movie database.
+It consists of several scripts that handle different functionalities related to movies,
+including login, adding movies, sorting movies, viewing detailed information,
+managing favorite movies, and searching movies.
+
+
+
 

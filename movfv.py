@@ -1,10 +1,7 @@
 import json
 import sys
 import movdt
-from user_login import login
-
-print(login.user)
-
+import login
 
 def create_favorite_database():
     # Define the path to the JSON file

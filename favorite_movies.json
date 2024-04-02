@@ -58,5 +58,10 @@
         "id": 1,
         "title": "The Shawshank Redemption",
         "user id": "vgerchev"
+    },
+    {
+        "id": 1,
+        "title": "The Shawshank Redemption",
+        "user id": 1
     }
 ]
