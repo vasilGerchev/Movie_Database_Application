@@ -1,8 +1,14 @@
-Python Movie Database Application
+PYTHON MOVIE DATABASE APPLICATION
+
 This Python Movie Database Application is a command-line tool designed to manage a movie database.
 It consists of several scripts that handle different functionalities related to movies,
 including login, adding movies, sorting movies, viewing detailed information,
 managing favorite movies, and searching movies.
+
+
+INSTALLACION
+
+
 
 
 
