@@ -49,7 +49,7 @@ def save_movies_to_database(movies):
 
 
 def get_movie_rating(title):
-    """Fetch movie data from the OMDb API."""
+    """Fetch movie Rating from the OMDb API."""
     url = f"http://www.omdbapi.com/?t={title}&apikey={OMDB_API_KEY}"
     response = requests.get(url)
     if response.status_code == 200:

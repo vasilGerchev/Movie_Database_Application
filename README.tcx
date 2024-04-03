@@ -1,9 +1,47 @@
-Python Movie Database Application
+PYTHON MOVIE DATABASE APPLICATION
+
 This Python Movie Database Application is a command-line tool designed to manage a movie database.
 It consists of several scripts that handle different functionalities related to movies,
 including login, adding movies, sorting movies, viewing detailed information,
 managing favorite movies, and searching movies.
 
+
+INSTALLATION
+
+1. Clone the repository to your local machine:
+git clone <https://github.com/vasilGerchev/Movie_Database_Application_Functionality_CLI.git>
+
+2.Navigate to the project directory:
+cd Movie_Database_Application
+
+
+USAGE
+
+1. Login (login.py)
+Run the login script to authenticate and access the application.
+2. Add Movie (movad.py)
+Use this script to add a new movie to the database.
+3. Sort Movies (movcat.py)
+Sort movies by criteria such as liked, genre, and newest.
+4. View Movie Details (movdt.py)
+Display detailed information about a specific movie by its ID.
+5. Add to Favorites (movfv.py)
+Add a movie to your favorites and manage your favorite movie list.
+6. List All Movies (movlist.py)
+View a list with details of all movies in the movie database.
+7. Search for Movies (movsrch.py)
+Search for a movie by its title and view its details.
+
+FILES
+
+movie_database.json: Main movie database file.
+favorite_movie.json: Database containing favorite movies.
+
+CONTACT
+
+For any inquiries or issues, feel free to contact the project maintainer:
+
+Vasil Gerchev
 
 
 
