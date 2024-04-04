@@ -12,25 +12,32 @@ INSTALLATION
 git clone <https://github.com/vasilGerchev/Movie_Database_Application_Functionality_CLI.git>
 
 2.Navigate to the project directory:
-cd Movie_Database_Application
+cd Movie_Database_Application_Functionality_CLI
 
 
 USAGE
 
 1. Login (login.py)
-Run the login script to authenticate and access the application.
-2. Add Movie (movad.py)
+This Python script provides a simple user authentication system.
+Users are stored as a dictionary where the keys are usernames and the values are passwords.
+2. Add Movie (movadd.py)
 Use this script to add a new movie to the database.
+Usage: python movadd.py "<title>" "<desc>" "<date>" "<director>" "<genre>"
 3. Sort Movies (movcat.py)
 Sort movies by criteria such as liked, genre, and newest.
+Usage: python movcat.py
 4. View Movie Details (movdt.py)
 Display detailed information about a specific movie by its ID.
+Usage: python movdt.py <movie_id>
 5. Add to Favorites (movfv.py)
 Add a movie to your favorites and manage your favorite movie list.
-6. List All Movies (movlist.py)
+Usage: python movfv.py <movie_id>
+6. List All Movies (movlst.py)
 View a list with details of all movies in the movie database.
+Usage: python movlst.py
 7. Search for Movies (movsrch.py)
 Search for a movie by its title and view its details.
+Usage: python movsrch.py <movie title>
 
 FILES
 

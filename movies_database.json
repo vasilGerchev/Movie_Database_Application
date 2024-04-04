@@ -160,5 +160,14 @@
         "genre": "Action",
         "description": "An ancient struggle between two Cybertronian races, the heroic Autobots and the evil Decepticons, comes to Earth, with a clue to the ultimate power held by a teenager.",
         "rating": "7.0"
+    },
+    {
+        "id": 19,
+        "title": "Avengers: Age of Ultron",
+        "year": 2015,
+        "director": "Joss Whedon",
+        "genre": "Action",
+        "description": "When Tony Stark and Bruce Banner try to jump-start a dormant peacekeeping program called Ultron, things go horribly wrong and it's up to Earth's mightiest heroes to stop the villainous Ultron from enacting his terrible plan.",
+        "rating": "7.3"
     }
 ]

@@ -3,6 +3,7 @@ import sys
 import movdt
 import login
 
+
 def create_favorite_database():
     # Define the path to the JSON file
     db_path = Path("favorite_database.json")
@@ -53,10 +54,10 @@ def save_movie_to_favorite_movie(new_movies):
     if existing_movies is None:  # If file not found or empty, initialize as empty list
         existing_movies = []
     for movie in new_movies:
-        if check_for_exist_in_favorite(movie['title'], login.user, existing_movies):
+        if check_for_exist_in_favorite(movie['title'], login.username, existing_movies):
             print(f"The movie with ID: {movie['id']} is already exist in favorite")
             return
-    simplified_movie = {'id': movie['id'], 'title': movie['title'], 'user id': login.user}
+    simplified_movie = {'id': movie['id'], 'title': movie['title'], 'user id': login.username}
     existing_movies.append(simplified_movie)  # Append new movies to existing list
 
     with open("favorite_movies.json", "w") as f:
