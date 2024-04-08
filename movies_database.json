@@ -169,5 +169,14 @@
         "genre": "Action",
         "description": "When Tony Stark and Bruce Banner try to jump-start a dormant peacekeeping program called Ultron, things go horribly wrong and it's up to Earth's mightiest heroes to stop the villainous Ultron from enacting his terrible plan.",
         "rating": "7.3"
+    },
+    {
+        "id": "5e5f9ec5-e766-403e-ab77-21e93dcf6d2f",
+        "title": "Avengers: Infinity War",
+        "year": 2018,
+        "director": "Anthony RussoJoe Russo",
+        "genre": "Action",
+        "description": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
+        "rating": "8.4"
     }
 ]

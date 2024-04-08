@@ -1,6 +1,7 @@
-import json
+import sqlite3
 import sys
 import requests
+import uuid
 import login
 
 OMDB_API_KEY = "75e112ac"
@@ -11,7 +12,7 @@ def add_movie(title, desc, date, director, genre):
     movie_id = generate_movie_id()
     rating = get_movie_rating(title)
     new_movie = {
-        "id": movie_id,
+        "id": str(movie_id),
         "title": title,
         "year": int(date),
         "director": director,
@@ -19,34 +20,33 @@ def add_movie(title, desc, date, director, genre):
         "description": desc,
         "rating": rating
     }
-    movies = load_movies_from_database()
-    movies.append(new_movie)
-    save_movies_to_database(movies)
+    save_movies_to_database(new_movie)
     print("New movie added successfully.")
 
 
 def generate_movie_id():
     """Generate a new unique ID for the movie."""
-    movies = load_movies_from_database()
-    if not movies:
-        return 1
-    return max(movie['id'] for movie in movies) + 1
-
-
-def load_movies_from_database():
-    """Load movies from the JSON database."""
-    try:
-        with open("movies_database.json", "r") as f:
-            movies = json.load(f)
-    except FileNotFoundError:
-        movies = []
-    return movies
+    return str(uuid.uuid4())
 
 
 def save_movies_to_database(movies):
-    """Save movies to the JSON database."""
-    with open("movies_database.json", "w") as f:
-        json.dump(movies, f, indent=4)
+    """Save movie to the SQLite database."""
+    connection = sqlite3.connect('movie_database.db')
+    cursor = connection.cursor()
+    cursor.execute('''CREATE TABLE IF NOT EXISTS movies (
+                            id TEXT PRIMARY KEY,
+                            title TEXT,
+                            year INTEGER,
+                            director TEXT,
+                            genre TEXT,
+                            description TEXT,
+                            rating REAL
+                       )''')
+    cursor.execute('''INSERT INTO movies (id, title, year, director, genre, description, rating) 
+                      VALUES (?, ?, ?, ?, ?, ?, ?)''',
+                   (movies['id'], movies['title'], movies['year'], movies['director'], movies['genre'], movies['description'], movies['rating']))
+    connection.commit()
+    connection.close()
 
 
 def get_movie_rating(title):

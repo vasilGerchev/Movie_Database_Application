@@ -8,7 +8,3 @@ if username in users and users[username] == password:
     loged_user = username
 else:
     exit("Invalid username or password. Please try again.")
-
-
-
-

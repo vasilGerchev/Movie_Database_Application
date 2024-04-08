@@ -1,22 +1,26 @@
 import json
+import sqlite3
 import sys
 import movdt
 import login
 
 
 def create_favorite_database():
-    # Define the path to the JSON file
-    db_path = Path("favorite_database.json")
+    # Connect to SQLite database
+    connection = sqlite3.connect('movie_database.db')
+    c = connection.cursor()
 
-    # Initialize an empty database if the file doesn't exist
-    if not db_path.exists():
-        with open(db_path, "w") as f:
-            json.dump([], f)
+    # Create 'favorites' table if it doesn't exist
+    c.execute('''CREATE TABLE IF NOT EXIST favorites title TEXT id TEXT user_id TEXT''')
+
+    # Commit changes and close connection
+    connection.commit()
+    connection.close()
 
 
 def search_movie_by_id(movie_id):
     """Search for movie ID in database"""
-    movies = movdt.load_movies_from_database()
+    movies = movdt.load_movies_from_database(movie_id)
     found_movies = []
     for movie in movies:
         if movie['id'] == movie_id:
@@ -31,37 +35,36 @@ def search_movie_by_id(movie_id):
 
 
 def load_movie_from_favorite_movie():
-    """Load movies from the JSON database."""
-    try:
-        with open("favorite_movies.json", "r") as f:
-            movies = json.load(f)
-    except FileNotFoundError:
-        movies = []
+    # Load movie from favorites table
+    connection = sqlite3.connect('movie_database.db')
+    c = connection.cursor()
+    c.execute("SELECT * FROM favorites")
+    movies = c.fetchall()
+    connection.close()
     return movies
 
 
 def check_for_exist_in_favorite(movie_title, user_id, favorities):
     """Check if a movie with the same title exists for a different user ID."""
     for movie in favorities:
-        if movie.get('title') == movie_title and movie.get('user id') == user_id:
+        if movie[2] == movie_title and movie[3] == user_id:
             return True
     return False
 
 
 def save_movie_to_favorite_movie(new_movies):
-    """Save movies to the JSON database."""
-    existing_movies = load_movie_from_favorite_movie()  # Load existing favorite movies
-    if existing_movies is None:  # If file not found or empty, initialize as empty list
-        existing_movies = []
+    # Save movies to the JSON database.
+    existing_movies = load_movie_from_favorite_movie()
+    connection = sqlite3.connect('movie_database.db')
+    c = connection.cursor()
     for movie in new_movies:
         if check_for_exist_in_favorite(movie['title'], login.username, existing_movies):
-            print(f"The movie with ID: {movie['id']} is already exist in favorite")
+            print(f"The movie with ID: {movie['id']} is already exist in favorites")
             return
-    simplified_movie = {'id': movie['id'], 'title': movie['title'], 'user id': login.username}
-    existing_movies.append(simplified_movie)  # Append new movies to existing list
-
-    with open("favorite_movies.json", "w") as f:
-        json.dump(existing_movies, f, indent=4)
+        c.execute("INSERT INTO favorites (title, id, user_id) VALUES (?, ?, ?)",
+                  (movie['title'], movie['id'], login.username))
+    connection.commit()
+    connection.close()
 
 
 if __name__ == "__main__":
@@ -70,10 +73,12 @@ if __name__ == "__main__":
         sys.exit(1)
 
     try:
-        movie_id = int(sys.argv[1])
+        movie_id = str(sys.argv[1])
     except ValueError:
         print("Error: <movie_id> must be an integer.")
         sys.exit(1)
 
     found_movies = search_movie_by_id(movie_id)
-    save_movie_to_favorite_movie(found_movies)
+    if found_movies:
+        create_favorite_database()
+        save_movie_to_favorite_movie(found_movies)
