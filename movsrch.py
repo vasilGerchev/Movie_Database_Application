@@ -1,5 +1,6 @@
 import sqlite3
 import sys
+from login import client
 
 
 def search_movie_by_title(database_file, title):

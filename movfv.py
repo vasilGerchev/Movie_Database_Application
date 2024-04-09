@@ -1,70 +1,73 @@
-import json
-import sqlite3
 import sys
+from pathlib import Path
+import sqlite3
+from login import client, login
 import movdt
-import login
 
 
 def create_favorite_database():
     # Connect to SQLite database
-    connection = sqlite3.connect('movie_database.db')
-    c = connection.cursor()
+    conn = sqlite3.connect("movie_database.db")
+    c = conn.cursor()
 
     # Create 'favorites' table if it doesn't exist
-    c.execute('''CREATE TABLE IF NOT EXIST favorites title TEXT id TEXT user_id TEXT''')
+    c.execute('''CREATE TABLE IF NOT EXISTS favorites
+                 (id TEXT, title TEXT, user_id TEXT)''')
 
     # Commit changes and close connection
-    connection.commit()
+    conn.commit()
+    conn.close()
+
+
+def load_movies_from_database(movie_id):
+    """Load a movie from the SQLite database."""
+
+    connection = sqlite3.connect('movie_database.db')
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM movies WHERE id=?", (movie_id,))
+    movie = cursor.fetchone()
     connection.close()
 
-
-def search_movie_by_id(movie_id):
-    """Search for movie ID in database"""
-    movies = movdt.load_movies_from_database(movie_id)
-    found_movies = []
-    for movie in movies:
-        if movie['id'] == movie_id:
-            found_movies.append(movie)
-    if found_movies:
-        for found_movie in found_movies:
-            print("The movie:", found_movie["title"], "Was added to favorites")
-        return found_movies
+    if movie:
+        return {
+            "id": movie[0],
+            "title": movie[1]
+        }
     else:
-        print("The movie does not exist")
         return None
 
 
 def load_movie_from_favorite_movie():
-    # Load movie from favorites table
-    connection = sqlite3.connect('movie_database.db')
-    c = connection.cursor()
+    """Load movies from the favorites table."""
+    conn = sqlite3.connect("movie_database.db")
+    c = conn.cursor()
     c.execute("SELECT * FROM favorites")
     movies = c.fetchall()
-    connection.close()
+    conn.close()
     return movies
 
 
-def check_for_exist_in_favorite(movie_title, user_id, favorities):
+def check_for_exist_in_favorite(movie_title, user_id, favorites):
     """Check if a movie with the same title exists for a different user ID."""
-    for movie in favorities:
-        if movie[2] == movie_title and movie[3] == user_id:
+    for movie in favorites:
+        if movie[1] == movie_title and movie[0] == user_id:
             return True
     return False
 
 
 def save_movie_to_favorite_movie(new_movies):
-    # Save movies to the JSON database.
+    """Save movies to the favorites table."""
     existing_movies = load_movie_from_favorite_movie()
-    connection = sqlite3.connect('movie_database.db')
-    c = connection.cursor()
+    conn = sqlite3.connect("movie_database.db")
+    c = conn.cursor()
     for movie in new_movies:
         if check_for_exist_in_favorite(movie['title'], login.username, existing_movies):
             print(f"The movie with ID: {movie['id']} is already exist in favorites")
             return
-        c.execute("INSERT INTO favorites (title, id, user_id) VALUES (?, ?, ?)",
-                  (movie['title'], movie['id'], login.username))
-    connection.commit()
-    connection.close()
+        c.execute("INSERT INTO favorites (id, title, user_id) VALUES (?, ?, ?)",
+                  (movie['id'], movie['title'], login.username))
+    conn.commit()
+    conn.close()
 
 
 if __name__ == "__main__":
@@ -75,10 +78,10 @@ if __name__ == "__main__":
     try:
         movie_id = str(sys.argv[1])
     except ValueError:
-        print("Error: <movie_id> must be an integer.")
+        print("Error: <movie_id> must be an text.")
         sys.exit(1)
 
-    found_movies = search_movie_by_id(movie_id)
+    found_movies = load_movies_from_database(movie_id)
     if found_movies:
         create_favorite_database()
         save_movie_to_favorite_movie(found_movies)

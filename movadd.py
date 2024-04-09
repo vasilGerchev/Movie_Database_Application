@@ -2,7 +2,7 @@ import sqlite3
 import sys
 import requests
 import uuid
-import login
+from login import client
 
 OMDB_API_KEY = "75e112ac"
 
@@ -12,7 +12,7 @@ def add_movie(title, desc, date, director, genre):
     movie_id = generate_movie_id()
     rating = get_movie_rating(title)
     new_movie = {
-        "id": str(movie_id),
+        "id": movie_id,
         "title": title,
         "year": int(date),
         "director": director,
