@@ -1,6 +1,5 @@
 import sqlite3
 import sys
-from login import client
 
 def get_movie_details(movie_id):
     """Get details of a movie by its ID."""

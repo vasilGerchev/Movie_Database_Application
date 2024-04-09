@@ -2,7 +2,6 @@ import sqlite3
 import sys
 import requests
 import uuid
-from login import client
 
 OMDB_API_KEY = "75e112ac"
 

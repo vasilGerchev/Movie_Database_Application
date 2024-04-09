@@ -1,5 +1,4 @@
 import sqlite3
-from login import client
 
 
 def movlst():
