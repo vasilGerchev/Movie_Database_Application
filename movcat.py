@@ -22,7 +22,7 @@ def load_favorite_movie_data():
 def sort_movies_by_genre(movie_data):
     sorted_movies = {}
     for movie in movie_data:
-        genre = movie[2]  # Assuming 'genre' is at index 2 in the database table
+        genre = movie[4]  # Assuming 'genre' is at index 4 in the database table
         if genre not in sorted_movies:
             sorted_movies[genre] = []
         sorted_movies[genre].append(
@@ -32,12 +32,12 @@ def sort_movies_by_genre(movie_data):
 
 # Define a function to sort movies by newest
 def sort_movies_by_newest(movie_data):
-    return sorted(movie_data, key=lambda x: x[3], reverse=True)  # Assuming 'year' is at index 3
+    return sorted(movie_data, key=lambda x: x[2], reverse=True)  # Assuming 'year' is at index 2
 
 
 # Define a function to sort movies by liked
 def top_5_liked_movies(favorite_movie_data):
-    id_counts = Counter(movie[1] for movie in favorite_movie_data)  # Assuming 'movie_id' is at index 1
+    id_counts = Counter(movie[0] for movie in favorite_movie_data)  # Assuming 'movie_id' is at index 0
 
     # Get top 5 most common movie ids
     top_5_ids = [id for id, count in id_counts.most_common(5)]
@@ -70,7 +70,7 @@ sorted_movies_by_newest = sort_movies_by_newest(movie_data)
 # Print the sorted movies by newest
 print("\nSorted by Newest:")
 for movie in sorted_movies_by_newest[:5]:
-    print(f"\t{movie[1]} ({movie[3]})")  # Assuming 'title' is at index 1 and 'year' is at index 3
+    print(f"\t{movie[1]} {movie[3]} ({movie[2]})")  # Assuming 'title' is at index 1, year at index 2 and 'year' is at index 3
 
 # Call the function to sort movies by liked
 top_5_liked_movies(favorite_movie_data)
@@ -79,7 +79,7 @@ top_5_liked_movies(favorite_movie_data)
 print("\nSorted by Most Liked:")
 sorted_top_5_movies = sorted(top_5_liked_movies(favorite_movie_data), key=lambda x: x['count'], reverse=True)
 for movie in sorted_top_5_movies[:5]:  # Print only the top 5 most liked movies
-    cursor.execute("SELECT title FROM movies WHERE id = ?", (movie["id"],))  # Fetch movie title from movies table
+    cursor.execute("SELECT title FROM favorites WHERE id = ?", (movie["id"],))  # Fetch movie title from favorites table
     movie_title = cursor.fetchone()
     if movie_title:
         print(f"\t{movie_title[0]} (Likes: {movie['count']})")

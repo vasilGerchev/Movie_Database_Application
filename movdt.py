@@ -1,6 +1,7 @@
 import sqlite3
 import sys
 
+
 def get_movie_details(movie_id):
     """Get details of a movie by its ID."""
     movie = load_movies_from_database(movie_id)

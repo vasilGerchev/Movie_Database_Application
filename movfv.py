@@ -1,6 +1,17 @@
 import sqlite3
 import sys
-import login
+from login import login
+
+connection = sqlite3.connect("movie_database.db")
+cursor = connection.cursor()
+
+cursor.execute('''CREATE TABLE IF NOT EXISTS favorites (
+            id TEXT,
+            title TEXT,
+            user_id TEXT
+          )''')
+
+connection.close()
 
 
 def check_and_save_favorite(movie_id):
@@ -14,7 +25,9 @@ def check_and_save_favorite(movie_id):
 
     if movie:
         # Get logged user ID
-        user_id = login.get_logged_user()
+        user_id = login.login()
+        if user_id == False:
+            exit()
 
         # Check if the movie already exists in favorites for this user
         cursor.execute('''SELECT title FROM favorites WHERE user_id = ? AND title = ?''', (user_id, movie[1]))

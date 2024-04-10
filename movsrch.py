@@ -2,6 +2,7 @@ import sqlite3
 import sys
 
 
+
 def search_movie_by_title(database_file, title):
     try:
         # Connect to the database

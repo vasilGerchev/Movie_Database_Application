@@ -3,6 +3,7 @@ import sys
 import requests
 import uuid
 
+
 OMDB_API_KEY = "75e112ac"
 
 
