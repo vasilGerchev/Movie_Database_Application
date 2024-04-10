@@ -18,7 +18,7 @@ cd Movie_Database_Application_Functionality_CLI
 USAGE
 
 1. Login (login.py)
-This Python script provides a simple user authentication system.
+This Python script provides a user authentication system.
 Users are stored as a dictionary where the keys are usernames and the values are passwords.
 2. Add Movie (movadd.py)
 Use this script to add a new movie to the database.
@@ -41,8 +41,8 @@ Usage: python movsrch.py <movie title>
 
 FILES
 
-movie_database.json: Main movie database file.
-favorite_movie.json: Database containing favorite movies.
+movie_database.db: Database containing new and favorite movies.
+userdata.db: Database containing registered user.
 
 CONTACT
 

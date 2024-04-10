@@ -1,6 +1,6 @@
 import sqlite3
 import sys
-from login import login
+import login
 
 connection = sqlite3.connect("movie_database.db")
 cursor = connection.cursor()

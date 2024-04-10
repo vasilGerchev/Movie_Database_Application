@@ -48,7 +48,7 @@ def login():
 
     username = input("Enter your username: ")
 
-    # Fetching hashed password from the database
+    # Load hashed password from the database
     cur.execute("SELECT password FROM userdata WHERE username = ?", (username,))
     result = cur.fetchone()
     if result:
@@ -58,7 +58,7 @@ def login():
         return False
 
     password = input("Enter your password: ")
-    # Encoding input password and comparing it with hashed password from the database
+    # Load input password and comparing it with hashed password from the database
     if hashlib.sha256(password.encode()).hexdigest() == hashed_password_db:
         print("Login successful!")
         return username
